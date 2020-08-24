@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "626849914033",
+    "firebase_url": "https://taxicarts.firebaseio.com",
+    "project_id": "taxicarts",
+    "storage_bucket": "taxicarts.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:626849914033:android:0d412d200413b018f55690",
+        "android_client_info": {
+          "package_name": "com.example.mis_viajes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "626849914033-c783gkj8t0v67ol0j1nng55pd1lm8dqj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mis_viajes",
+            "certificate_hash": "2ea868ecbd46719b9d2c47d1e60b3d98b9f9f14f"
+          }
+        },
+        {
+          "client_id": "626849914033-9707jumv8vvg8u0s33e4lga5puu89qkf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATmUMCSobX7nKIzd170XEEfIfvWlYh_KE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "626849914033-9707jumv8vvg8u0s33e4lga5puu89qkf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
