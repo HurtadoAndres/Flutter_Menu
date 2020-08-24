@@ -35,6 +35,7 @@ class _HomeState extends State<Home> {
                 ),
             )
             */
+            Image.network("https://previews.123rf.com/images/vasilyrosca/vasilyrosca1612/vasilyrosca161200298/68591274-perspectiva-ciudad-mapa-concepto-de-servicio-de-gps-dise%C3%B1o-de-plantilla-de-ruta-de-mapa-de-ciudad-3d-.jpg")
           ],
         ));
   }

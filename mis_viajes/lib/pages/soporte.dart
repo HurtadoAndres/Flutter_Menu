@@ -76,7 +76,7 @@ class _soporteState extends State<soporte> with TickerProviderStateMixin {
           child: Column(
         children: <Widget>[
           Flexible(
-              child: ListView.builder(
+            child: ListView.builder(
             padding: const EdgeInsets.all(8.0),    
             reverse: true,
             itemBuilder: (_, int index) => _messaje[index],
