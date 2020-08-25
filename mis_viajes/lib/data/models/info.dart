@@ -14,6 +14,7 @@ class Info{
       snapshot.get("direcion2"),
       snapshot.get("precio"),
       snapshot.get("estado"),
+      // ignore: deprecated_member_use
       snapshot.documentID
       );
   }

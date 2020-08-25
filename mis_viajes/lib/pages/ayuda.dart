@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
+// ignore: must_be_immutable
+// ignore: camel_case_types
+// ignore: must_be_immutable
+// ignore: camel_case_types
+// ignore: must_be_immutable
+// ignore: camel_case_types
 class ayuda extends StatelessWidget {
   static const String ruta = "/ayuda";
   String MensajeTitulo = "Nuestro correo de contacto:\nmis_viajes_ayuda@misviajes.com\n";

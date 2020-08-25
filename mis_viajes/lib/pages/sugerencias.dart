@@ -1,8 +1,70 @@
 import 'package:flutter/material.dart';
 
 // ignore: camel_case_types
-class sugerencias extends StatelessWidget {
+class sugerencias extends StatefulWidget {
   static const String ruta = "/sugerencias";
+
+  @override
+  _sugerenciasState createState() => _sugerenciasState();
+}
+
+// ignore: camel_case_types
+class _sugerenciasState extends State<sugerencias> with TickerProviderStateMixin {
+  final TextEditingController _textController = TextEditingController();
+  final List<ChartMessage> _messaje = <ChartMessage>[];
+  bool _isTyped = false;
+  void _handleSubmit(String text) {
+    _textController.clear();
+    setState(() {
+      _isTyped = false;
+    });
+    ChartMessage message = ChartMessage(
+      text: text,
+      animationController: AnimationController(
+        vsync: this,
+        duration: Duration(milliseconds: 700),
+      ),
+      name: "Andres",
+    );
+
+    setState(() {
+      _messaje.insert(0, message);
+    });
+    message.animationController.forward();
+
+    print(text);
+  }
+
+  Widget _buildTextComposer(BuildContext context) {
+    return IconTheme(
+        data: IconThemeData(color: Theme.of(context).accentColor),
+        child: Container(
+          child: Row(children: <Widget>[
+            Flexible(
+                child: Container(
+              padding: const EdgeInsets.all(10.0),
+              color: Colors.grey[300],
+              child: TextField(
+                controller: _textController,
+                onChanged: (String text) {
+                  setState(() {
+                    _isTyped = text.length > 0;
+                  });
+                },
+                decoration:
+                    InputDecoration.collapsed(hintText: "Enviar mensaje"),
+              ),
+            )),
+            Container(
+                child: IconButton(
+              icon: Icon(Icons.send),
+              onPressed:
+                  _isTyped ? () => _handleSubmit(_textController.text) : null,
+            ))
+          ]),
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -16,9 +78,70 @@ class sugerencias extends StatelessWidget {
         backgroundColor: Colors.white,
         iconTheme: new IconThemeData(color: Colors.black),
       ),
-      body: Center(
-        child: Container(
-          child: Text('Hello World'),
+      body: Container(
+          child: Column(
+        children: <Widget>[
+          Flexible(
+              child: ListView.builder(
+            padding: const EdgeInsets.all(8.0),
+            reverse: true,
+            itemBuilder: (_, int index) => _messaje[index],
+            itemCount: _messaje.length,
+          )),
+          Divider(height: 1.0),
+          Container(
+            child: _buildTextComposer(context),
+          )
+        ],
+      )),
+    );
+  }
+}
+
+class ChartMessage extends StatelessWidget {
+  ChartMessage({this.text, this.animationController, this.name});
+  final String text;
+  final AnimationController animationController;
+  final String name;
+  @override
+  Widget build(BuildContext context) {
+    return SizeTransition(
+      sizeFactor:
+          CurvedAnimation(parent: animationController, curve: Curves.easeOut),
+      child: Container(
+        margin: const EdgeInsets.symmetric(vertical: 10.0),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            Container(
+               alignment: Alignment.centerRight,
+               child: Container(
+               alignment: Alignment.centerRight,
+                margin: const EdgeInsets.only(right: 16.0),
+                child: CircleAvatar(
+                  child: Text(name[0]),
+                ),
+              ),
+            ),
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    name,
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Container(
+                    margin: const EdgeInsets.only(top: 5.0),
+                    child: Text(text),
+                  )
+                ],
+              ),
+            )
+          ],
         ),
       ),
     );

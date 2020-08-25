@@ -4,7 +4,6 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mis_viajes/bloc/bloc_bloc/viajes_event.dart';
 import 'package:mis_viajes/bloc/bloc_bloc/viajes_state.dart';
-import 'package:mis_viajes/data/models/info.dart';
 import 'package:mis_viajes/data/repositories/info_repository.dart';
 
 
