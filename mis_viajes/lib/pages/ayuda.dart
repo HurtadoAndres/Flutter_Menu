@@ -1,16 +1,9 @@
 import 'package:flutter/material.dart';
 
-// ignore: camel_case_types
-// ignore: must_be_immutable
-// ignore: camel_case_types
-// ignore: must_be_immutable
-// ignore: camel_case_types
-// ignore: must_be_immutable
-// ignore: camel_case_types
 class ayuda extends StatelessWidget {
   static const String ruta = "/ayuda";
-  String MensajeTitulo = "Nuestro correo de contacto:\nmis_viajes_ayuda@misviajes.com\n";
-  String Descripcion = "1.Al hacer el pedido, nadie me ha llamado. vuelve hacer el pedido\n\n2.¿Como puedo dejaralgun comentario al condutor? Despues de finalizado su viaje, se le abrira una ventana donde podra realizarla calificacion y comentario.\n\n3.Cosas olvidadas \nEscribamos al correo: cosasolvidadas@misviajes.com o llamas al numero : 321474758, Este preparado a indicar el itinerario del viaje. Le ayudaremos a solucionar la situacion.";
+  String mensajeTitulo = "Nuestro correo de contacto:\nmis_viajes_ayuda@misviajes.com\n";
+  String descripcion = "1.Al hacer el pedido, nadie me ha llamado. vuelve hacer el pedido\n\n2.¿Como puedo dejaralgun comentario al condutor? Despues de finalizado su viaje, se le abrira una ventana donde podra realizarla calificacion y comentario.\n\n3.Cosas olvidadas \nEscribamos al correo: cosasolvidadas@misviajes.com o llamas al numero : 321474758, Este preparado a indicar el itinerario del viaje. Le ayudaremos a solucionar la situacion.";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,11 +22,11 @@ class ayuda extends StatelessWidget {
         child:Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-          Text(MensajeTitulo, style: TextStyle(
+          Text(mensajeTitulo, style: TextStyle(
             fontSize: 20,
             fontWeight: FontWeight.bold,
             ), textAlign: TextAlign.justify,),
-          Text(Descripcion, style: TextStyle(
+          Text(descripcion, style: TextStyle(
             fontSize: 18,
             ),
             )

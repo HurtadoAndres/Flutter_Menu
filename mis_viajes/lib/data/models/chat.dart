@@ -11,8 +11,8 @@ class Chat{
     return Chat(      
       snapshot.get("name"),
       snapshot.get("mensaje"),
-      // ignore: deprecated_member_use
-      snapshot.documentID
+      snapshot.id
+    
       );
   }
 }

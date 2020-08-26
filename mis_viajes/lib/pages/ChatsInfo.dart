@@ -1,3 +1,5 @@
+
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:mis_viajes/bloc/bloc_bloc/chat_bloc.dart';
@@ -20,7 +22,7 @@ class _ChatInfoState extends State<ChatInfo> with TickerProviderStateMixin {
   List<Chat> chatList = [];
   bool _isTyped = false;
 
-  void _handleSubmit(String txt)  async {
+  void _handleSubmit(String txt, BuildContext context)  async {
     _textController.clear();
     setState(() {
       _isTyped = false;
@@ -52,7 +54,7 @@ class _ChatInfoState extends State<ChatInfo> with TickerProviderStateMixin {
             Container(
                 child: IconButton(
               icon: Icon(Icons.send),
-              onPressed: _isTyped ? () => _handleSubmit(_textController.text): null,
+              onPressed: _isTyped ? () => _handleSubmit(_textController.text, context): null,
             ))
           ]),
         ));
@@ -76,20 +78,25 @@ class _ChatInfoState extends State<ChatInfo> with TickerProviderStateMixin {
         builder: (context, state) {
           if (state is ChatLoaded) {
             chatList = state.chats;
+        
             return Stack(
               children: [
                 Container(
+                  margin: EdgeInsets.only(bottom:40.0),
                   padding: const EdgeInsets.all(10.0),
                   child: chatList.length == 0
                       ? Center(
                           child: Text("No Info Avaliable"),
                         )
                       : ListView.builder(
+                      
+                       // shrinkWrap: true,
                           itemCount: chatList.length,
                           itemBuilder: (_, index) {
                             return ChartMessage(
                               chatList[index].mensaje,
                               chatList[index].name,
+                              context
                             );
                           }),
                 ),
@@ -98,7 +105,9 @@ class _ChatInfoState extends State<ChatInfo> with TickerProviderStateMixin {
                   alignment: Alignment.bottomCenter,
                   child: _buildTextComposer(context),
                 )
+              
               ],
+                
             );
           }
           return Container();
@@ -109,15 +118,16 @@ class _ChatInfoState extends State<ChatInfo> with TickerProviderStateMixin {
 }
 
 // ignore: non_constant_identifier_names
-Widget ChartMessage(String text, String name) {
+Widget ChartMessage(String text, String name, BuildContext context) {
   return AnimatedContainer(
+     width: MediaQuery.of(context).size.width,
     duration: Duration(microseconds: 1000),
     curve: Curves.fastOutSlowIn,
     margin: const EdgeInsets.symmetric(vertical: 10.0),
     child: Expanded(
-      child: name == "Angelica"
+      child: name == "Soporte"
           ? Row(
-              mainAxisAlignment: name == "Angelica"
+              mainAxisAlignment: name == "Soporte"
                   ? MainAxisAlignment.start
                   : MainAxisAlignment.end,
               children: [
@@ -149,31 +159,33 @@ Widget ChartMessage(String text, String name) {
                 ),
               ],
             )
-          : cliente(name, text),
+          : cliente(name, text, context),
     ),
   );
 }
 
-Widget cliente(String name, String text) {
+Widget cliente(String name, String text, BuildContext context) {
   return Row(
     mainAxisAlignment:
-        name == "Angelica" ? MainAxisAlignment.start : MainAxisAlignment.end,
+        name == "Soporte" ? MainAxisAlignment.start : MainAxisAlignment.end,
     children: [
       Column(
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           AnimatedContainer(
+             
               duration: Duration(milliseconds: 1000),
               curve: Curves.elasticOut,
               child: Text(
                 name,
                 style: TextStyle(fontWeight: FontWeight.bold),
               )),
-          Align(
-              alignment: Alignment.centerRight,
-              child: Text(
-                text,
-              )),
+          Container(
+            child: Text(
+              
+              text,
+            ),
+          ),
         ],
       ),
       AnimatedContainer(

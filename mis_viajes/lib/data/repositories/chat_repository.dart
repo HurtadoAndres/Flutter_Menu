@@ -4,25 +4,29 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:mis_viajes/data/models/chat.dart';
 
 class ChatRepository {
-  // ignore: deprecated_member_use
-  final databaseReference = Firestore.instance.collection("chats");
+ 
+    final databaseReference = FirebaseFirestore.instance.collection("chats");
+  
   
   Stream<List<Chat>> getPosts() {
-    databaseReference.orderBy("fecha",descending: false);
-    return databaseReference.snapshots().map((snapshot) {
-  
-      // ignore: deprecated_member_us
-      // ignore: deprecated_member_use
-      return snapshot.documents.map((doc) => Chat.fromSnapshot(doc)).toList();
-    });
+   return databaseReference.orderBy('time', descending: false)
+   .snapshots().map((snapshot) { 
+     return snapshot.docs.map((doc) => Chat.fromSnapshot(doc)).toList();
+     });
   }
 
+
   Future<void> putChats(String name, String mensaje) async {
-    
-    databaseReference.document().setData(
+   
+
+    var timekey =DateTime.now();
+    var time = timekey.millisecondsSinceEpoch;
+
+    databaseReference.doc().set(
       {
       'mensaje': mensaje, 
-      'name': name
+      'name': name,
+      'time' : time
       }
       );
   }
